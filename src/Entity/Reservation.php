@@ -8,6 +8,7 @@ class Reservation {
 	private ?int $id;
 	private ?Airport $departureAirport;
 	private ?Airport $arrivalAirport;
+	private ?Plane $plane;
 	private ?DateTimeInterface $departureDatetime;
 
 	public function getId(): ?int {
@@ -30,6 +31,16 @@ class Reservation {
 
 	public function setArrivalAirport(?Airport $arrivalAirport): self {
 		$this->arrivalAirport = $arrivalAirport;
+
+		return $this;
+	}
+
+	public function getPlane(): ?Plane {
+		return $this->plane;
+	}
+
+	public function setPlane(?Plane $plane): self {
+		$this->plane = $plane;
 
 		return $this;
 	}

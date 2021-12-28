@@ -25,3 +25,8 @@ App\Entity\Reservation:
                 name: arrival_airport_id
                 referencedColumnName: id
                 nullable: false
+        plane:
+            inversedBy: reservations
+            targetEntity: App\Entity\Plane
+            joinColumn:
+                nullable: false

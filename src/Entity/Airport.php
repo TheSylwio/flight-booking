@@ -11,8 +11,8 @@ class Airport {
 	private ?string $name;
 	private ?float $latitude;
 	private ?float $longitude;
-	private ArrayCollection $departureReservations;
-	private ArrayCollection $arrivalReservations;
+	private Collection $departureReservations;
+	private Collection $arrivalReservations;
 
 	public function __construct() {
 		$this->departureReservations = new ArrayCollection();
