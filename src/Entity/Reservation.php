@@ -2,26 +2,12 @@
 
 namespace App\Entity;
 
-use App\Repository\ReservationRepository;
 use DateTimeInterface;
-use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: ReservationRepository::class)]
 class Reservation {
-	#[ORM\Id]
-	#[ORM\GeneratedValue]
-	#[ORM\Column(type: 'integer')]
 	private ?int $id;
-
-	#[ORM\ManyToOne(targetEntity: Airport::class, inversedBy: 'departureReservations')]
-	#[ORM\JoinColumn(nullable: false)]
 	private ?Airport $departureAirport;
-
-	#[ORM\ManyToOne(targetEntity: Airport::class, inversedBy: 'arrivalReservations')]
-	#[ORM\JoinColumn(nullable: false)]
 	private ?Airport $arrivalAirport;
-
-	#[ORM\Column(type: 'datetime')]
 	private ?DateTimeInterface $departureDatetime;
 
 	public function getId(): ?int {
