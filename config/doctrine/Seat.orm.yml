@@ -1,0 +1,17 @@
+App\Entity\Seat:
+    type: entity
+    repositoryClass: App\Repository\SeatRepository
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+    fields:
+        orderNumber:
+            type: integer
+    manyToOne:
+        plane:
+            inversedBy: seats
+            targetEntity: App\Entity\Plane
+            joinColumn:
+                nullable: false
