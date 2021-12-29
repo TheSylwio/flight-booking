@@ -1,0 +1,4 @@
+App\Entity\Seat:
+    attributes:
+        orderNumber:
+            groups: [ 'read', 'write' ]

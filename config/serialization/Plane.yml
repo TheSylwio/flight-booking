@@ -1,0 +1,8 @@
+App\Entity\Plane:
+    attributes:
+        id:
+            groups: [ 'read', 'write' ]
+        name:
+            groups: [ 'read', 'write' ]
+        seats:
+            groups: [ 'read', 'write' ]

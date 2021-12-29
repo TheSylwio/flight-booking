@@ -1,0 +1,12 @@
+App\Entity\Flight:
+    attributes:
+        id:
+            groups: [ 'read', 'write' ]
+        departureAirport:
+            groups: [ 'read', 'write' ]
+        arrivalAirport:
+            groups: [ 'read', 'write' ]
+        plane:
+            groups: [ 'read', 'write' ]
+        departureDatetime:
+            groups: [ 'read', 'write' ]

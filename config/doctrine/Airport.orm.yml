@@ -22,9 +22,9 @@ App\Entity\Airport:
             type: float
             nullable: false
     oneToMany:
-        departureReservations:
-            targetEntity: App\Entity\Reservation
+        departureFlights:
+            targetEntity: App\Entity\Flight
             mappedBy: departureAirport
-        arrivalReservations:
-            targetEntity: App\Entity\Reservation
+        arrivalFlights:
+            targetEntity: App\Entity\Flight
             mappedBy: arrivalAirport

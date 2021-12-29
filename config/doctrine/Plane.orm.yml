@@ -15,6 +15,6 @@ App\Entity\Plane:
         seats:
             mappedBy: plane
             targetEntity: App\Entity\Seat
-        reservations:
+        flights:
             mappedBy: plane
-            targetEntity: App\Entity\Reservation
+            targetEntity: App\Entity\Flight

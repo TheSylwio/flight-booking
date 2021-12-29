@@ -15,19 +15,15 @@ class Seat {
 		return $this->orderNumber;
 	}
 
-	public function setOrderNumber(int $orderNumber): self {
+	public function setOrderNumber(int $orderNumber): void {
 		$this->orderNumber = $orderNumber;
-
-		return $this;
 	}
 
 	public function getPlane(): ?Plane {
 		return $this->plane;
 	}
 
-	public function setPlane(?Plane $plane): self {
+	public function setPlane(?Plane $plane): void {
 		$this->plane = $plane;
-
-		return $this;
 	}
 }
