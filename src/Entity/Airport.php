@@ -11,12 +11,12 @@ class Airport {
 	private ?string $name;
 	private ?float $latitude;
 	private ?float $longitude;
-	private Collection $departureReservations;
-	private Collection $arrivalReservations;
+	private Collection $departureFlights;
+	private Collection $arrivalFlights;
 
 	public function __construct() {
-		$this->departureReservations = new ArrayCollection();
-		$this->arrivalReservations = new ArrayCollection();
+		$this->departureFlights = new ArrayCollection();
+		$this->arrivalFlights = new ArrayCollection();
 	}
 
 	public function getId(): ?int {
@@ -27,93 +27,71 @@ class Airport {
 		return $this->country;
 	}
 
-	public function setCountry(string $country): self {
+	public function setCountry(string $country): void {
 		$this->country = $country;
-
-		return $this;
 	}
 
 	public function getName(): ?string {
 		return $this->name;
 	}
 
-	public function setName(string $name): self {
+	public function setName(string $name): void {
 		$this->name = $name;
-
-		return $this;
 	}
 
 	public function getLatitude(): ?float {
 		return $this->latitude;
 	}
 
-	public function setLatitude(float $latitude): self {
+	public function setLatitude(float $latitude): void {
 		$this->latitude = $latitude;
-
-		return $this;
 	}
 
 	public function getLongitude(): ?float {
 		return $this->longitude;
 	}
 
-	public function setLongitude(float $longitude): self {
+	public function setLongitude(float $longitude): void {
 		$this->longitude = $longitude;
-
-		return $this;
 	}
 
-	/**
-	 * @return Collection|Reservation[]
-	 */
-	public function getDepartureReservations(): Collection {
-		return $this->departureReservations;
+	/** @return Collection|Flight[] */
+	public function getDepartureFlights(): Collection {
+		return $this->departureFlights;
 	}
 
-	public function addDepartureReservation(Reservation $departureReservation): self {
-		if (!$this->departureReservations->contains($departureReservation)) {
-			$this->departureReservations[] = $departureReservation;
-			$departureReservation->setDepartureAirport($this);
+	public function addDepartureFlight(Flight $departureFlight): void {
+		if (!$this->departureFlights->contains($departureFlight)) {
+			$this->departureFlights[] = $departureFlight;
+			$departureFlight->setDepartureAirport($this);
 		}
-
-		return $this;
 	}
 
-	public function removeDepartureReservation(Reservation $departureReservation): self {
-		if ($this->departureReservations->removeElement($departureReservation)) {
-			// set the owning side to null (unless already changed)
-			if ($departureReservation->getDepartureAirport() === $this) {
-				$departureReservation->setDepartureAirport(null);
+	public function removeDepartureFlight(Flight $departureFlight): void {
+		if ($this->departureFlights->removeElement($departureFlight)) {
+			if ($departureFlight->getDepartureAirport() === $this) {
+				$departureFlight->setDepartureAirport(null);
 			}
 		}
-
-		return $this;
 	}
 
-	/**
-	 * @return Collection|Reservation[]
-	 */
-	public function getArrivalReservations(): Collection {
-		return $this->arrivalReservations;
+	/** @return Collection|Flight[] */
+	public function getArrivalFlights(): Collection {
+		return $this->arrivalFlights;
 	}
 
-	public function addArrivalReservation(Reservation $arrivalReservation): self {
-		if (!$this->arrivalReservations->contains($arrivalReservation)) {
-			$this->arrivalReservations[] = $arrivalReservation;
-			$arrivalReservation->setArrivalAirport($this);
+	public function addArrivalFlight(Flight $arrivalFlight): void {
+		if (!$this->arrivalFlights->contains($arrivalFlight)) {
+			$this->arrivalFlights[] = $arrivalFlight;
+			$arrivalFlight->setArrivalAirport($this);
 		}
-
-		return $this;
 	}
 
-	public function removeArrivalReservation(Reservation $arrivalReservation): self {
-		if ($this->arrivalReservations->removeElement($arrivalReservation)) {
-			// set the owning side to null (unless already changed)
-			if ($arrivalReservation->getArrivalAirport() === $this) {
-				$arrivalReservation->setArrivalAirport(null);
+	public function removeArrivalReservation(Flight $arrivalFlight): void {
+		if ($this->arrivalFlights->removeElement($arrivalFlight)) {
+			if ($arrivalFlight->getArrivalAirport() === $this) {
+				$arrivalFlight->setArrivalAirport(null);
 			}
 		}
-
-		return $this;
 	}
 }

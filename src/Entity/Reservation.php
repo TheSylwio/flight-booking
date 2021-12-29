@@ -6,52 +6,35 @@ use DateTimeInterface;
 
 class Reservation {
 	private ?int $id;
-	private ?Airport $departureAirport;
-	private ?Airport $arrivalAirport;
-	private ?Plane $plane;
-	private ?DateTimeInterface $departureDatetime;
+	private ?string $user;
+	private ?Flight $flight;
+	private ?DateTimeInterface $datetime;
 
 	public function getId(): ?int {
 		return $this->id;
 	}
 
-	public function getDepartureAirport(): ?Airport {
-		return $this->departureAirport;
+	public function getUser(): ?string {
+		return $this->user;
 	}
 
-	public function setDepartureAirport(?Airport $departureAirport): self {
-		$this->departureAirport = $departureAirport;
-
-		return $this;
+	public function setUser(string $user): void {
+		$this->user = $user;
+	}
+	
+	public function getFlight(): ?Flight {
+		return $this->flight;
 	}
 
-	public function getArrivalAirport(): ?Airport {
-		return $this->arrivalAirport;
+	public function setFlight(?Flight $flight): void {
+		$this->flight = $flight;
 	}
 
-	public function setArrivalAirport(?Airport $arrivalAirport): self {
-		$this->arrivalAirport = $arrivalAirport;
-
-		return $this;
+	public function getDatetime(): ?DateTimeInterface {
+		return $this->datetime;
 	}
 
-	public function getPlane(): ?Plane {
-		return $this->plane;
-	}
-
-	public function setPlane(?Plane $plane): self {
-		$this->plane = $plane;
-
-		return $this;
-	}
-
-	public function getDepartureDatetime(): ?DateTimeInterface {
-		return $this->departureDatetime;
-	}
-
-	public function setDepartureDatetime(DateTimeInterface $departureDatetime): self {
-		$this->departureDatetime = $departureDatetime;
-
-		return $this;
+	public function setDatetime(?DateTimeInterface $datetime): void {
+		$this->datetime = $datetime;
 	}
 }

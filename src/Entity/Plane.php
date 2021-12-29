@@ -9,10 +9,11 @@ class Plane {
 	private ?int $id;
 	private ?string $name;
 	private Collection $seats;
-	private Collection $reservations;
+	private Collection $flights;
 
 	public function __construct() {
 		$this->seats = new ArrayCollection();
+		$this->flights = new ArrayCollection();
 	}
 
 	public function getId(): ?int {
@@ -23,63 +24,47 @@ class Plane {
 		return $this->name;
 	}
 
-	public function setName(string $name): self {
+	public function setName(string $name): void {
 		$this->name = $name;
-
-		return $this;
 	}
 
-	/**
-	 * @return Collection|Seat[]
-	 */
+	/** @return Collection|Seat[] */
 	public function getSeats(): Collection {
 		return $this->seats;
 	}
 
-	public function addSeat(Seat $seat): self {
+	public function addSeat(Seat $seat): void {
 		if (!$this->seats->contains($seat)) {
 			$this->seats[] = $seat;
 			$seat->setPlane($this);
 		}
-
-		return $this;
 	}
 
-	public function removeSeat(Seat $seat): self {
+	public function removeSeat(Seat $seat): void {
 		if ($this->seats->removeElement($seat)) {
-			// set the owning side to null (unless already changed)
 			if ($seat->getPlane() === $this) {
 				$seat->setPlane(null);
 			}
 		}
-
-		return $this;
 	}
 
-	/**
-	 * @return Collection|Reservation[]
-	 */
-	public function getReservations(): Collection {
-		return $this->reservations;
+	/** @return Collection|Flight[] */
+	public function getFlights(): Collection {
+		return $this->flights;
 	}
 
-	public function addReservation(Reservation $reservation): self {
-		if (!$this->seats->contains($reservation)) {
-			$this->reservations[] = $reservation;
-			$reservation->setPlane($this);
+	public function addFlight(Flight $flight): void {
+		if (!$this->seats->contains($flight)) {
+			$this->flights[] = $flight;
+			$flight->setPlane($this);
 		}
-
-		return $this;
 	}
 
-	public function removeReservation(Reservation $reservation): self {
-		if ($this->seats->removeElement($reservation)) {
-			// set the owning side to null (unless already changed)
-			if ($reservation->getPlane() === $this) {
-				$reservation->setPlane(null);
+	public function removeFlight(Flight $flight): void {
+		if ($this->seats->removeElement($flight)) {
+			if ($flight->getPlane() === $this) {
+				$flight->setPlane(null);
 			}
 		}
-
-		return $this;
 	}
 }
