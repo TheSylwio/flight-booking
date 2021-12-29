@@ -1,0 +1,20 @@
+App\Entity\Plane:
+    type: entity
+    repositoryClass: App\Repository\PlaneRepository
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+    fields:
+        name:
+            type: string
+            length: 255
+            nullable: false
+    oneToMany:
+        seats:
+            mappedBy: plane
+            targetEntity: App\Entity\Seat
+        reservations:
+            mappedBy: plane
+            targetEntity: App\Entity\Reservation

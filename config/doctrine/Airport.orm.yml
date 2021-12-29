@@ -1,0 +1,30 @@
+App\Entity\Airport:
+    type: entity
+    repositoryClass: App\Repository\AirportRepository
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+    fields:
+        country:
+            type: string
+            length: 255
+            nullable: false
+        name:
+            type: string
+            length: 255
+            nullable: false
+        latitude:
+            type: float
+            nullable: false
+        longitude:
+            type: float
+            nullable: false
+    oneToMany:
+        departureReservations:
+            targetEntity: App\Entity\Reservation
+            mappedBy: departureAirport
+        arrivalReservations:
+            targetEntity: App\Entity\Reservation
+            mappedBy: arrivalAirport
