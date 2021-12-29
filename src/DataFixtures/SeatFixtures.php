@@ -9,10 +9,11 @@ use Doctrine\Persistence\ObjectManager;
 
 class SeatFixtures extends Fixture implements DependentFixtureInterface {
 	public function load(ObjectManager $manager): void {
-		for ($plane = 0; $plane < 20; $plane++) {
+		for ($plane = 0; $plane <= 20; $plane++) {
 			for ($j = 0; $j < random_int(0, 179); $j++) {
 				$seat = new Seat();
-				$seat->setPlane($this->getReference(sprintf('plane_%d', $plane)));
+				$seat->setPlane($this->getReference(PlaneFixtures::PREFIX . $plane));
+				$seat->setPlane($this->getReference(PlaneFixtures::PREFIX . $plane));
 				$seat->setOrderNumber($j);
 				$manager->persist($seat);
 			}
