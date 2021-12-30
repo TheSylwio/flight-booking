@@ -1,8 +1,13 @@
 api_platform:
     title: 'Flight Booking API'
+    defaults:
+        pagination_enabled: false
+    formats:
+        json: [ 'application/json' ]
+        html: [ 'text/html' ]
     mapping:
-        paths: ['%kernel.project_dir%/config/api_platform']
+        paths: [ '%kernel.project_dir%/config/api_platform' ]
     patch_formats:
-        json: ['application/merge-patch+json']
+        json: [ 'application/merge-patch+json' ]
     swagger:
-        versions: [3]
+        versions: [ 3 ]
