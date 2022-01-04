@@ -13,9 +13,17 @@ App\Entity\Reservation:
         datetime:
             type: datetime
             nullable: false
+        status:
+            type: string
+            nullable: false
     manyToOne:
         flight:
             inversedBy: reservations
             targetEntity: App\Entity\Flight
+            joinColumn:
+                nullable: false
+        seat:
+            inversedBy: reservations
+            targetEntity: App\Entity\Seat
             joinColumn:
                 nullable: false
