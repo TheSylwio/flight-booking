@@ -1,4 +1,4 @@
 App\Entity\Seat:
     attributes:
         orderNumber:
-            groups: [ 'read', 'write' ]
+            groups: [ 'flight-read', 'reservation-read' ]

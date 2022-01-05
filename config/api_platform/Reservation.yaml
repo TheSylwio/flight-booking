@@ -1,0 +1,10 @@
+App\Entity\Reservation:
+    collectionOperations:
+        get: ~
+    itemOperations:
+        get: ~
+    attributes:
+        normalization_context:
+            groups: [ 'reservation-read' ]
+        denormalization_context:
+            groups: [ 'write' ]
