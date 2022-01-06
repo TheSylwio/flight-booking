@@ -15,3 +15,7 @@ App\Entity\Seat:
             targetEntity: App\Entity\Plane
             joinColumn:
                 nullable: false
+    oneToMany:
+        reservations:
+            mappedBy: seat
+            targetEntity: App\Entity\Reservation

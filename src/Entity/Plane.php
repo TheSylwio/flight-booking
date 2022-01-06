@@ -54,14 +54,14 @@ class Plane {
 	}
 
 	public function addFlight(Flight $flight): void {
-		if (!$this->seats->contains($flight)) {
+		if (!$this->flights->contains($flight)) {
 			$this->flights[] = $flight;
 			$flight->setPlane($this);
 		}
 	}
 
 	public function removeFlight(Flight $flight): void {
-		if ($this->seats->removeElement($flight)) {
+		if ($this->flights->removeElement($flight)) {
 			if ($flight->getPlane() === $this) {
 				$flight->setPlane(null);
 			}

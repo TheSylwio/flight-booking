@@ -1,0 +1,10 @@
+App\Entity\Reservation:
+    attributes:
+        id:
+            groups: [ 'reservation-read' ]
+        flight:
+            groups: [ 'reservation-read' ]
+        seat:
+            groups: [ 'reservation-read' ]
+        status:
+            groups: [ 'reservation-read' ]

@@ -1,12 +1,12 @@
 App\Entity\Airport:
     attributes:
         id:
-            groups: [ 'read', 'write' ]
+            groups: [ 'flight-read', 'reservation-read' ]
         country:
-            groups: [ 'read', 'write' ]
+            groups: [ 'flight-read', 'reservation-read' ]
         name:
-            groups: [ 'read', 'write' ]
+            groups: [ 'flight-read', 'reservation-read' ]
         latitude:
-            groups: [ 'read', 'write' ]
+            groups: [ 'flight-read', 'reservation-read' ]
         longitude:
-            groups: [ 'read', 'write' ]
+            groups: [ 'flight-read', 'reservation-read' ]

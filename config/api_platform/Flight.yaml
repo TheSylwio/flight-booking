@@ -5,6 +5,4 @@ App\Entity\Flight:
         get: ~
     attributes:
         normalization_context:
-            groups: [ 'read' ]
-        denormalization_context:
-            groups: [ 'write' ]
+            groups: [ 'flight-read' ]

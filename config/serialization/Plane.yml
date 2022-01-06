@@ -1,8 +1,8 @@
 App\Entity\Plane:
     attributes:
         id:
-            groups: [ 'read', 'write' ]
+            groups: [ 'flight-read', 'reservation-read' ]
         name:
-            groups: [ 'read', 'write' ]
+            groups: [ 'flight-read', 'reservation-read' ]
         seats:
-            groups: [ 'read', 'write' ]
+            groups: [ 'flight-read' ]
