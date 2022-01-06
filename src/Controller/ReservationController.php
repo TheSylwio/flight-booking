@@ -10,12 +10,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
 
 class ReservationController extends AbstractController {
-	/**
-	 * @Route("/api/reservations", name="reservation_create", methods={"POST"})
-	 */
 	public function create(Request $request, SeatRepository $seatRepository, FlightRepository $flightRepository, EntityManagerInterface $em): JsonResponse {
 		$data = json_decode($request->getContent());
 

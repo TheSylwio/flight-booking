@@ -1,6 +1,7 @@
-controllers:
-    resource: ../src/Controller/
-    type: annotation
+reservation_create:
+    path: /api/reservations
+    controller: App\Controller\ReservationController::create
+    methods: POST
 
 kernel:
     resource: ../src/Kernel.php
