@@ -1,13 +1,6 @@
 App\Entity\User:
   collectionOperations:
     get: ~
-  itemOperations:
-    registration:
-      method: POST
-      path: /register
-      controller: App\Controller\RegistrationController
-      normalization_context:
-        groups: [ 'write' ]
   attributes:
     normalization_context:
       groups: [ 'read' ]

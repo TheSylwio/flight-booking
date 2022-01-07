@@ -5,33 +5,43 @@ namespace App\Controller;
 
 
 use App\Entity\User;
+use App\Repository\UserRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpKernel\Attribute\AsController;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
-#[AsController]
 class RegistrationController extends AbstractController
 {
-    public function __invoke($data, UserPasswordHasherInterface $passwordHasher)
+    public function create(Request $request, UserPasswordHasherInterface $passwordHasher, EntityManagerInterface $em, UserRepository $userRepository): JsonResponse
     {
-        $user = $data;
-        $em = $this->container->get('doctrine')->getManager();
-        $hashedPassword = $passwordHasher->hashPassword(
-            $user,
-            $data
-        );
-        $user->setPassword($hashedPassword);
-        $em->persist($user);
-        $validator = $this->container->get('validator');
-        $errors = $validator->validate($user);
-        if (count($errors) > 0) {
-            return $data;
-        } else {
-            $em->flush();
-            $jwtManager = $this->container->get('lexik_jwt_authentication.jwt_manager');
-            return new JsonResponse(['token' => $jwtManager->create($user)]);
-        }
-    }
+        $data = json_decode($request->getContent());
 
+        try{
+            $user = new User();
+
+            $userWithEmail = $userRepository->findBy(['email' => $data->email]);
+            if ($userWithEmail) {
+                return $this->json('User with this email already exists!', Response::HTTP_BAD_REQUEST);
+            }
+            $user->setEmail($data->email);
+            $user->setFirstname($data->firstname);
+            $user->setLastname($data->lastname);
+            $user->setRoles('');
+            $hashedPassword = $passwordHasher->hashPassword(
+                $user,
+                $data->password
+            );
+            $user->setPassword($hashedPassword);
+
+            $em->persist($user);
+            $em->flush();
+        }catch(\Exception $e){
+            return $this->json('Couldnt create user', Response::HTTP_BAD_REQUEST);
+        }
+
+        return $this->json('Created user successfully', Response::HTTP_CREATED);
+    }
 }

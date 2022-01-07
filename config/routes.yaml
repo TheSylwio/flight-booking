@@ -11,6 +11,11 @@ reservation_update:
 login:
     path: /api/login
     methods: POST
+    
+register:
+    path: /api/register
+    methods: POST
+    controller: App\Controller\RegistrationController::create
 
 controllers:
     resource: ../src/Controller/
