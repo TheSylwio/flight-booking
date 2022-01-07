@@ -15,3 +15,6 @@ App\Entity\User:
       type: string
     lastname:
       type: string
+    roles:
+      type: string
+      nullable: true

@@ -5,6 +5,10 @@ security:
         Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface: 'auto'
     # https://symfony.com/doc/current/security.html#loading-the-user-the-user-provider
     providers:
+        app_user_provider:
+            entity:
+                class: App\Entity\User
+                property: email
         users_in_memory: { memory: null }
         database:
             entity:
@@ -15,31 +19,34 @@ security:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
         main:
-            lazy: true
-            provider: users_in_memory
-        login:
-            pattern: ^/api/login
             stateless: true
-            provider: database
+            provider: app_user_provider
             json_login:
-                check_path: /api/login_check
+                check_path: /api/login
+                provider: app_user_provider
                 success_handler: lexik_jwt_authentication.handler.authentication_success
                 failure_handler: lexik_jwt_authentication.handler.authentication_failure
+            jwt: ~
+        register:
+            pattern: ^/api/register
+            stateless: true
         api:
             pattern: ^/api
             stateless: true
             jwt:
                 provider: database
-
     access_control:
-        - { path: ^/api/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/api/docs, roles: PUBLIC_ACCESS }
+        - { path: ^/api/flight, roles: PUBLIC_ACCESS  }
+        - { path: ^/api/register, roles: PUBLIC_ACCESS  }
+        - { path: ^/api/login, roles: PUBLIC_ACCESS  }
         - { path: ^/api, roles: IS_AUTHENTICATED_FULLY }
 
-when@test:
-    security:
-        password_hashers:
-            Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface:
-                algorithm: auto
-                cost: 4 # Lowest possible value for bcrypt
-                time_cost: 3 # Lowest possible value for argon
-                memory_cost: 10 # Lowest possible value for argon
+#when@test:
+#    security:
+#        password_hashers:
+#            Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface:
+#                algorithm: auto
+#                cost: 4 # Lowest possible value for bcrypt
+#                time_cost: 3 # Lowest possible value for argon
+#                memory_cost: 10 # Lowest possible value for argon
