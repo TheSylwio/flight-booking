@@ -1,5 +1,7 @@
 api_platform:
     title: 'Flight Booking API'
+    defaults:
+        pagination_enabled: false
     formats:
         json: [ 'application/json' ]
         html: [ 'text/html' ]
