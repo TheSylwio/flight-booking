@@ -18,6 +18,10 @@ class ReservationController extends AbstractController {
 		$data = json_decode($request->getContent());
 
 		$flight = $flightRepository->find($data->flight);
+		if (!$flight) {
+			return $this->json(sprintf('Flight with id %d does not exist!', $data->flight), Response::HTTP_BAD_REQUEST);
+		}
+
 		$plane = $flight->getPlane();
 
 		$chosenSeat = $seatRepository->findBy(['orderNumber' => $data->seat, 'plane' => $plane]);
