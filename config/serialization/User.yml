@@ -1,0 +1,4 @@
+App\Entity\Seat:
+  attributes:
+    id:
+      groups: ['read']
