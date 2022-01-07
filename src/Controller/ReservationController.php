@@ -27,4 +27,16 @@ class ReservationController extends AbstractController {
 
 		return $this->json('Entity created', Response::HTTP_CREATED);
 	}
+
+	public function patch(Request $request,  EntityManagerInterface $em): JsonResponse {
+		$data = json_decode($request->getContent());
+
+		$res = $em->getRepository(Reservation::class)->find($data->id);
+
+		$res->setStatus($data->status);
+
+		$em->flush();
+
+		return $this->json('Entity updated', Response::HTTP_OK);
+	}
 }

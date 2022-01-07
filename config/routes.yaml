@@ -3,6 +3,11 @@ reservation_create:
     controller: App\Controller\ReservationController::create
     methods: POST
 
+reservation_update:
+    path: /api/reservations
+    controller: App\Controller\ReservationController::patch
+    methods: PATCH
+
 kernel:
     resource: ../src/Kernel.php
     type: annotation
