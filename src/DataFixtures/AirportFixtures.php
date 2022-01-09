@@ -16,7 +16,7 @@ class AirportFixtures extends Fixture {
 		for ($i = 0; $i <= 4; $i++) {
 			$airport = new Airport();
 
-			$airport->setName(sprintf('Airport %d', $i));
+			$airport->setName($faker->city());
 			$airport->setCountry($faker->countryISOAlpha3());
 			$airport->setLatitude($faker->latitude());
 			$airport->setLongitude($faker->longitude());

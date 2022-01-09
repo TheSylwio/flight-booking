@@ -14,7 +14,7 @@ class ReservationFixtures extends Fixture implements DependentFixtureInterface {
 	public function load(ObjectManager $manager) {
 		$faker = Factory::create();
 
-		for ($i = 0; $i <= 4000; $i++) {
+		for ($i = 0; $i <= 30; $i++) {
 			$reservation = new Reservation();
 			$reservation->setFlight($this->getReference(FlightFixtures::PREFIX . random_int(0, 1000)));
 			$reservation->setSeat($this->getReference(SeatFixtures::PREFIX . random_int(0, 20) . '|' . random_int(0, 9)));
